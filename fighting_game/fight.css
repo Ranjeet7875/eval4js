@@ -1,0 +1,49 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: antiquewhite;
+}
+.warrior{
+    padding: 20px;
+    background-color: aquamarine;
+    border-radius:12px ;
+    margin-bottom: 20px;
+    -webkit-border-radius:12px ;
+    -moz-border-radius:12px ;
+    -ms-border-radius:12px ;
+    -o-border-radius:12px ;
+}
+.warrior h2{
+    margin-top: 0;
+}
+.battle-log{
+    max-height: 300px;
+    overflow-y: scroll;
+    background-color: blueviolet    ;
+    padding: 10px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+button{
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+}
+button:hover{
+    background-color: rgb(224, 92, 92);
+    color: rgb(1, 8, 60);
+}
+.status{
+    margin: 10px 0;
+    font-weight: bold;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./search.css">
+</head>
+<body>
+    <h1>Product Search App</h1>
+    <input type="text" id="ProductSearch" placeholder="enetr the product name">
+
+    <ul id="ProductResult"></ul>
+    <ul id="productDetails"></ul>
+<script>
+    let searchTimer;
+    let searchKeyword=document.getElementById("productSearch")
+    searchKeyword.addEventListener('change',debouncedSearch)
+    function debouncedSearch(){
+        console.log("debounced...?")
+        clearTimeout(searchTimer);
+        searchTimer=setTimeout(function(){
+            SearchProduct()
+        },400)
+
+    }
+    function SearchProduct(){
+        console.log("Product Function")
+        if (searchKeyword.value.length>=10){
+            fetch('https://firebas-76710-default-rtdb.firebaseio.com/product.json')
+                .then((resp)=>resp.json())
+                .then((res)=>displayResult(res.Search))
+                .catch((err)=>console.error(err))
+        }
+    }
+    function displayResult(products){
+        const productList=document.getElementById('ProductResult')
+        productList.innerHTML="";
+        products.forEach(product=>{
+            const li=document.createElement('li')
+            li.textContent=product.Title;
+            li.onclick=()=displayProduct(product)
+            productList.appendChild(li)
+        })
+    }
+    function displayProduct(productId){
+        fetch('https://firebas-76710-default-rtdb.firebaseio.com/product.json')
+            .then((resp)=>resp.json())
+            .then((res)=>{
+                const ProductDetails=document.querySelector('productDetails')
+                /ProductDetails.innerHTML='
+                <img src="${res.images}" alt="${res.title}" />
+                <div>
+                    <h2>${res.Title}</h2>
+                    <p>${res.description}</p>
+                    <p>${res.category}</p>
+                    <p>${res.price}</p>
+                </div>
+
+
+                ';
+            }).catch((err)=>console.error(err));
+    }
+</script>
+</body>
+</html>
